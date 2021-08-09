@@ -19,8 +19,12 @@ export default function Home(): JSX.Element {
   } = useInfiniteQuery(
     'images',
     // TODO AXIOS REQUEST WITH PARAM
-    ,
-    // TODO GET AND RETURN NEXT PAGE PARAM
+    () => {
+      return {};
+    },
+    {
+      getNextPageParam: (lastPage, allPages) => console.log(lastPage, allPages),
+    }
   );
 
   const formattedData = useMemo(() => {
