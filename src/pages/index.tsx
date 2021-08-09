@@ -39,11 +39,7 @@ export default function Home(): JSX.Element {
     if (!data) {
       return null;
     }
-    const pages = data.pages
-      .map(page => page.data)
-      .reduce((acc, curr) => {
-        return [...acc, ...curr];
-      }, []);
+    const pages = data.pages.map(page => page.data).flat();
 
     return pages;
   }, [data]);
@@ -58,12 +54,17 @@ export default function Home(): JSX.Element {
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
-        {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
+
+        {isLoading && <Loading />}
 
         {hasNextPage && (
-          <button type="button" onClick={() => fetchNextPage()}>
+          <Button
+            onClick={() => fetchNextPage()}
+            isLoading={isFetchingNextPage}
+            marginTop={4}
+          >
             Carregar mais
-          </button>
+          </Button>
         )}
       </Box>
     </>
