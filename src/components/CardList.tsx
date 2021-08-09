@@ -16,6 +16,10 @@ interface CardsProps {
 }
 
 export function CardList({ cards }: CardsProps): JSX.Element {
+  if (!cards) {
+    return <></>;
+  }
+
   // TODO MODAL USEDISCLOSURE
 
   // TODO SELECTED IMAGE URL STATE
@@ -23,10 +27,19 @@ export function CardList({ cards }: CardsProps): JSX.Element {
   // TODO FUNCTION HANDLE VIEW IMAGE
 
   return (
-    <>
+    <div>
       {/* TODO CARD GRID */}
+      {cards.map(card => {
+        return (
+          <div>
+            <img src={card.url} alt={card.title} />
+            <h2>{card.title}</h2>
+            <span>{card.description}</span>
+          </div>
+        );
+      })}
 
       {/* TODO MODALVIEWIMAGE */}
-    </>
+    </div>
   );
 }
