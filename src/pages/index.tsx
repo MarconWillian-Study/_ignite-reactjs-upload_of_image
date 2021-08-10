@@ -56,6 +56,7 @@ export default function Home(): JSX.Element {
         <CardList cards={formattedData} />
 
         {isLoading && <Loading />}
+        {isError && <Error />}
 
         {hasNextPage && (
           <Button
