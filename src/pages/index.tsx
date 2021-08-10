@@ -33,8 +33,6 @@ export default function Home(): JSX.Element {
     }
   );
 
-  console.log(hasNextPage);
-
   const formattedData = useMemo(() => {
     if (!data) {
       return null;
@@ -43,10 +41,6 @@ export default function Home(): JSX.Element {
 
     return pages;
   }, [data]);
-
-  // TODO RENDER LOADING SCREEN
-
-  // TODO RENDER ERROR SCREEN
 
   return (
     <>
