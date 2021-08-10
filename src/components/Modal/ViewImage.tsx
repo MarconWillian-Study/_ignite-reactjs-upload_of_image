@@ -19,8 +19,12 @@ export function ModalViewImage({
   onClose,
   imgUrl,
 }: ModalViewImageProps): JSX.Element {
+  const handleCloseModal = (): void => {
+    onClose();
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered size="2xl">
+    <Modal isOpen={isOpen} onClose={handleCloseModal} isCentered size="2xl">
       <ModalOverlay />
       <ModalContent bgColor="pGray.900">
         <ModalBody p={0}>
