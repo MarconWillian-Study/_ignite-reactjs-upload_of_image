@@ -36,18 +36,13 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
     }
   );
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState,
-    setError,
-    trigger,
-  } = useForm();
+  const { register, handleSubmit, reset, formState, setError, trigger } =
+    useForm();
   const { errors } = formState;
 
   const onSubmit = async (data: Record<string, unknown>): Promise<void> => {
     try {
+      console.log(data);
       // TODO SHOW ERROR TOAST IF IMAGE URL DOES NOT EXISTS
       // TODO EXECUTE ASYNC MUTATION
       // TODO SHOW SUCCESS TOAST
@@ -67,20 +62,20 @@ export function FormAddImage({ closeModal }: FormAddImageProps): JSX.Element {
           setLocalImageUrl={setLocalImageUrl}
           setError={setError}
           trigger={trigger}
-          // TODO SEND IMAGE ERRORS
-          // TODO REGISTER IMAGE INPUT WITH VALIDATIONS
+          error={errors.image}
+          {...register('image')}
         />
 
         <TextInput
           placeholder="Título da imagem..."
-          // TODO SEND TITLE ERRORS
-          // TODO REGISTER TITLE INPUT WITH VALIDATIONS
+          error={errors.title}
+          {...register('title')}
         />
 
         <TextInput
           placeholder="Descrição da imagem..."
-          // TODO SEND DESCRIPTION ERRORS
-          // TODO REGISTER DESCRIPTION INPUT WITH VALIDATIONS
+          error={errors.description}
+          {...register('description')}
         />
       </Stack>
 
