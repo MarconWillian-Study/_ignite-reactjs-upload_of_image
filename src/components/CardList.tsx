@@ -16,15 +16,15 @@ interface CardsProps {
 }
 
 export function CardList({ cards }: CardsProps): JSX.Element {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [urlOpened, setUrlOpened] = useState('');
   if (!cards) {
     return <></>;
   }
 
-  // TODO MODAL USEDISCLOSURE
-
   function handleCloseImage(url: string): void {
     setUrlOpened(url);
+    onOpen();
   }
 
   return (
@@ -33,11 +33,7 @@ export function CardList({ cards }: CardsProps): JSX.Element {
         <Card key={card.id} data={card} viewImage={handleCloseImage} />
       ))}
 
-      <ModalViewImage
-        imgUrl={urlOpened}
-        isOpen={!!urlOpened}
-        onClose={() => setUrlOpened('')}
-      />
+      <ModalViewImage imgUrl={urlOpened} isOpen={isOpen} onClose={onClose} />
     </SimpleGrid>
   );
 }
